@@ -60,11 +60,19 @@ public class IntroDialogueSystem : MonoBehaviour
             yield return null;
         }
         fader.alpha = 0;
+        Destroy(transform.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            StopAllCoroutines();
+            mText.text = "";
+            fader.alpha = 0;
+            bg.alpha = 0;
+            Destroy(transform.gameObject);
+        }
     }
 }

@@ -12,6 +12,10 @@ GameObject:
   - component: {fileID: 8588042577324779889}
   - component: {fileID: 8588042577324779888}
   - component: {fileID: 1128081969}
+  - component: {fileID: 1562562536}
+  - component: {fileID: 1562562537}
+  - component: {fileID: 1562562538}
+  - component: {fileID: 1562562539}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -182,6 +186,72 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1562562536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588042577324779891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 700e1e17f0d577c43a123ecf6bf6ba86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingsScreen: {fileID: 0}
+  gameOverScreen: {fileID: 0}
+  mAudio: {fileID: 0}
+--- !u!114 &1562562537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588042577324779891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 714e01d270c46ee4b8fd100d679c5021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 200
+  maxAngle: 70
+  mouseClamp: 5
+  smoothVal: 0.25
+  inverted: 1
+  smooth: 3
+  tiltAngle: 5
+  tiltAngleY: 5
+--- !u!114 &1562562538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588042577324779891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33a6e6c798772474080944d695a0a8b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  body: {fileID: 8588042579248713373}
+  thrustMax: 4
+  thrustMin: 1
+  accelPeriod: 1
+  speedModifier: 1
+  mAudio: {fileID: 0}
+--- !u!114 &1562562539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588042577324779891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79023ba8ca268854f963fc38c16a4498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeScale: 1
 --- !u!1 &8588042577748313136
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8588042577748313137
 RectTransform:
   m_ObjectHideFlags: 0
@@ -538,11 +608,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6279624587193474979, guid: ac54f25dec14b8d43bcc09b11ebc0511,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1392580394544418406, guid: ac54f25dec14b8d43bcc09b11ebc0511,
         type: 3}

@@ -77,4 +77,14 @@ public class PauseMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void SaveGame()
+    {
+        //put all tree data into an array of FruitTreeData
+        //create a new GameStateData
+        //fill in da blanks
+        //serialize GameStateData to json
+        //write json string to file in persistantDataPath
+
+    }
 }

@@ -24,7 +24,8 @@ public class ItemSelector : MonoBehaviour
         {
             StopAllCoroutines();
             StartCoroutine(ToggleSeed());
-        }           
+        }
+        
     }
 
     private IEnumerator ToggleSeed()
@@ -69,6 +70,15 @@ public class ItemSelector : MonoBehaviour
             transform.position = Vector3.Lerp(startPos, targetPos, timer / transitionTime);
             timer += Time.deltaTime;
             yield return null;
+        }
+    }
+
+    public void Planted()
+    {
+        numSeeds--;
+        if (numSeeds < 1)
+        {
+            selectedState.text = "Selected: None";
         }
     }
 }

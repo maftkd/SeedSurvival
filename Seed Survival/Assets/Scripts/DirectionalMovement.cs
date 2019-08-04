@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DirectionalMovement : MonoBehaviour
 {
@@ -8,12 +9,15 @@ public class DirectionalMovement : MonoBehaviour
 	public float thrustMax, thrustMin, accelPeriod;
 	private float thrust, thrustTimer;
 	public float speedModifier=1.2f;
-
+    private float energy = 0.5f;
+    public float energyFadeRate;
 	public AudioManager mAudio;
+    public Text energyText;
     
 	// Start is called before the first frame update
     void Start()
     {
+        energyText.text = "Energy: " + Mathf.FloorToInt(energy * 100) + "%";
         thrust = thrustMax;
 		thrustTimer=0;
     }

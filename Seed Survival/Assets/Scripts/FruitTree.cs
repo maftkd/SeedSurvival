@@ -21,8 +21,8 @@ public class FruitTree : MonoBehaviour
     public float branchGrowthScale;
     public float globalGrowthRate;
     public int maxBranchLevel;
-    public List<Vector3> liveBranchPositions, allBranchPositions;
-    public List<Quaternion> liveBranchRotations, allBranchRotations;
+    public List<Vector3> liveBranchPositions, allBranchPositions, oldBranchPositions;
+    public List<Quaternion> liveBranchRotations, allBranchRotations, oldBranchRotations;
     public List<Vector3> allBranchScales;
 
     private bool loaded = false;
@@ -64,15 +64,9 @@ public class FruitTree : MonoBehaviour
                 }
                 int branchLevel = allBranchPositions.Count / branchRate + 1;
                 float growTime = branchTime * Mathf.Pow(growthRateDelay, branchLevel);
-                Debug.Log("estimated growTime: " + growTime);
-                Debug.Log("we would start branches here");
-                Debug.Log("live branch positions: " + liveBranchPositions.Count);
-                Debug.Log("live branch rotations: " + liveBranchRotations.Count);
-                for (int i=0; i<liveBranchPositions.Count; i++)
+                for (int i=0; i<oldBranchPositions.Count; i++)
                 {
-                    Debug.Log(liveBranchPositions[i]);
-                    Debug.Log(liveBranchRotations[i]);
-                    StartCoroutine(CreateBranch(growTime, liveBranchPositions[i], liveBranchRotations[i]));
+                    StartCoroutine(CreateBranch(growTime, oldBranchPositions[i], oldBranchRotations[i]));
                 }
             }
             
@@ -122,7 +116,6 @@ public class FruitTree : MonoBehaviour
         Vector3 startScale = branch.localScale;
         Vector3 endScale = startScale + branchScaleVector * branchGrowthScale*(1f-(float)branchLevel/(float)10);
 
-        /*
         float timer = 0;
         while(timer < growTime)
         {
@@ -161,8 +154,6 @@ public class FruitTree : MonoBehaviour
         allBranchPositions.Add(branch.localPosition);
         allBranchRotations.Add(branch.localRotation);
         allBranchScales.Add(branch.localScale);
-        */
-        yield return null;
     }
 
     private void CreateBranchInstantly(Vector3 pos, Quaternion rot, Vector3 localS)
@@ -218,8 +209,8 @@ public class FruitTree : MonoBehaviour
         growing = mData.growing;
         fruiting = mData.fruiting;
         hasTrunk = mData.hasTrunk;
-        liveBranchPositions = mData.liveBranchPositions;
-        liveBranchRotations = mData.liveBranchRotations;
+        oldBranchPositions = mData.liveBranchPositions;
+        oldBranchRotations = mData.liveBranchRotations;
         allBranchPositions = mData.allBranchPositions;
         allBranchRotations = mData.allBranchRotations;
         allBranchScales = mData.allBranchScales;

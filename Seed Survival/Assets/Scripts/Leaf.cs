@@ -24,7 +24,7 @@ public class Leaf : MonoBehaviour
         //winter color
         winterColor.b += Random.Range(0, .02f);
         winterColor.g += Random.Range(0, .02f);
-        mat = transform.GetComponent<MeshRenderer>().material;
+        mat = transform.GetComponent<MeshRenderer>().sharedMaterial;
         StartCoroutine(FadeIn());
     }
 

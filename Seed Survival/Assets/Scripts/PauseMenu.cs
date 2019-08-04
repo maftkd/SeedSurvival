@@ -102,7 +102,7 @@ public class PauseMenu : MonoBehaviour
         gsd.seedCount = item.numSeeds;
         gsd.fruitCount = item.numFruit;
         gsd.playerEnergy = transform.GetComponent<DirectionalMovement>().energy;
-        gsd.playerPos = transform.position;
+        gsd.playerPos = transform.parent.position;
         gsd.playerRot = Camera.main.transform.rotation;
         DayCycle day = GameObject.FindGameObjectWithTag("Sun").GetComponent<DayCycle>();
         gsd.seasonCode = day.seasonCode;
@@ -129,7 +129,7 @@ public class PauseMenu : MonoBehaviour
         item.numSeeds = gsd.seedCount;
         item.numFruit = gsd.fruitCount;
         transform.GetComponent<DirectionalMovement>().energy = gsd.playerEnergy;
-        transform.position = gsd.playerPos;
+        transform.parent.position = gsd.playerPos;
         Camera.main.transform.rotation = gsd.playerRot;
         DayCycle day = GameObject.FindGameObjectWithTag("Sun").GetComponent<DayCycle>();
         day.seasonCode = gsd.seasonCode;

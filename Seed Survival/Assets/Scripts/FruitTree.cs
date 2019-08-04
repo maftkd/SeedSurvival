@@ -158,8 +158,9 @@ public class FruitTree : MonoBehaviour
         }
         else
         {
-            branchLevel = allBranchPositions.Count / branchRate + 2;
+            branchLevel = Mathf.FloorToInt(Mathf.Pow((float)allBranchPositions.Count, 1f / (float)branchRate));
         }
+        
         Vector3 startScale = branch.localScale;
         Vector3 endScale = startScale + branchScaleVector * branchGrowthScale*(1f-(float)branchLevel/(float)10);
 
@@ -190,9 +191,9 @@ public class FruitTree : MonoBehaviour
         liveBranchRotations.Clear();
         yield return new WaitForSeconds(0.5f);
 
-        
-        if (branchLevel <= maxBranchLevel)
+        if (branchLevel+1 < maxBranchLevel)
         {
+            Debug.Log("I firmly that " + branchLevel + " is less than " + maxBranchLevel);
             for (int i = 0; i < branchRate; i++)
             {
                 Vector3 euler = startRot.eulerAngles;
@@ -200,6 +201,10 @@ public class FruitTree : MonoBehaviour
                     euler.z + Random.Range(-branchAxisRandom, branchAxisRandom));
                 StartCoroutine(CreateBranch(growTime * growthRateDelay, branch.position + branch.up * branch.localScale.y * transform.localScale.y * 0.01f, newRot,false));
             }
+        }
+        else
+        {
+            Debug.Log("stop copulating");
         }
         //pop the branch from the live branches        
         allBranchPositions.Add(branch.localPosition);

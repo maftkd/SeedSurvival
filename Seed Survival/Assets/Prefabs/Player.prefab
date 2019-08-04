@@ -543,6 +543,7 @@ MonoBehaviour:
   meditationTimeScale: 35
   body: {fileID: 0}
   meditationCamera: {fileID: 0}
+  mAudio: {fileID: 0}
 --- !u!114 &3270021289438219016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1127,6 +1128,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232292776988985207, guid: 0bfdb01bbb9db44439fff637a03ebb71,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 119791564363055389, guid: 0bfdb01bbb9db44439fff637a03ebb71,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bfdb01bbb9db44439fff637a03ebb71, type: 3}

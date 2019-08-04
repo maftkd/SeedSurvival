@@ -21,7 +21,7 @@ public class ItemManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(0) && mMan.timeScale > 0)
+        if (Input.GetMouseButtonDown(0) && mMan.timeScale > 0)
         {
             if (sItem.numSeeds > 0 && sItem.seedSelected)
                 PlantSeed();

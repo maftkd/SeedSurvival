@@ -60,9 +60,9 @@ MonoBehaviour:
   growthRateDelay: 1.8
   branchScaleVector: {x: 0.1, y: 1, z: 0.1}
   branchGrowthScale: 100
-  globalGrowthRate: 0.001
-  maxBranchLevel: 4
-  fruitPeriod: 16
+  globalGrowthRate: 0.0015
+  maxBranchLevel: 3
+  fruitPeriod: 48
   liveBranchPositions: []
   allBranchPositions: []
   oldBranchPositions: []

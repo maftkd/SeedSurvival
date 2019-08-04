@@ -33,4 +33,9 @@ public class GameLoader : MonoBehaviour
         if(File.Exists(Application.persistentDataPath+"/saveData.json"))
             SceneManager.LoadScene("Game");
     }
+
+    public void SeeCredits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
 }

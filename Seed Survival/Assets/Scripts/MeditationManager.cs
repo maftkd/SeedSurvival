@@ -6,7 +6,7 @@ public class MeditationManager : MonoBehaviour
 {
     public float timeScale = 1;
     public float meditationTimeScale;
-    private bool meditating = false;
+    public bool meditating = false;
     public GameObject body;
     public Camera meditationCamera;
     float camNormal, camLow;

@@ -7,8 +7,8 @@ public class DayCycle : MonoBehaviour
 {
     public float spinSpeed;
     private MeditationManager mMan;
-    public int seasonCode = 0;
-    public int dayCode = 0;
+    public int seasonCode;
+    public int dayCode;
     public Text seasonText;
     public bool isSunny = true;
     public ParticleSystem stars;
@@ -50,7 +50,7 @@ public class DayCycle : MonoBehaviour
             dayCode++;
             isSunny = true;
             stars.Stop();
-            if(dayCode > 5)
+            if(dayCode > 2)
             {
                 dayCode = 0;
                 seasonCode++;

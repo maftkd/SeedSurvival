@@ -90,12 +90,15 @@ public class ItemSelector : MonoBehaviour
     public void Eaten()
     {
         numFruit--;
-        numSeeds++;
+        if (Random.value < 0.25f)
+        {
+            numSeeds++;
+        }
         if (numFruit < 1 && !seedSelected)
         {
             selectedState.text = "Selected: None";
         }
-        else if (seedSelected)
+        else if (numSeeds >= 1 && seedSelected)
         {
             selectedState.text = "Selected: Seed";
         }

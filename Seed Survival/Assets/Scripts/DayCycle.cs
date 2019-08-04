@@ -11,6 +11,7 @@ public class DayCycle : MonoBehaviour
     public int dayCode = 0;
     public Text seasonText;
     public bool isSunny = true;
+    public ParticleSystem stars;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,12 +42,14 @@ public class DayCycle : MonoBehaviour
                     if (dayTimer > nightTime)
                     {
                         isSunny = false;
+                        stars.Play();
                     }
                 }
             }
 
             dayCode++;
             isSunny = true;
+            stars.Stop();
             if(dayCode > 6)
             {
                 dayCode = 0;

@@ -9,6 +9,9 @@ public class GameStateData
     public FruitTreeData[] trees;
     public int seedCount;
     public int fruitCount;
+    public float playerEnergy;
     public Vector3 playerPos;
     public Quaternion playerRot;
+    public int seasonCode;
+    public int dayCode;
 }

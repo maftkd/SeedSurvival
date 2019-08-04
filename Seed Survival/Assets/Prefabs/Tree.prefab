@@ -44,20 +44,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a946b0d5470fe743990ef9975381dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alive: 1
+  growing: 0
+  fruiting: 0
+  hasTrunk: 0
   debugText: {fileID: 406966466875641545}
   branchPrefab: {fileID: 82767494424664041, guid: b65867a942a359b4c89dd0666f5ff6c3,
     type: 3}
   breakTime: 1
-  branchTime: 10
+  branchTime: 90
   trunkAxisRandom: 5
   branchAxisRandom: 55
   branchRate: 4
   growthRateDelay: 2
   branchScaleVector: {x: 0.1, y: 1, z: 0.1}
   branchGrowthScale: 100
-  globalGrowthRate: 0.01
-  liveBranches: []
-  allBranches: []
+  globalGrowthRate: 0.001
+  maxBranchLevel: 4
+  liveBranchPositions: []
+  allBranchPositions: []
+  liveBranchRotations: []
+  allBranchRotations: []
+  liveBranchScales: []
+  allBranchScales: []
 --- !u!1 &406966466875641547
 GameObject:
   m_ObjectHideFlags: 0

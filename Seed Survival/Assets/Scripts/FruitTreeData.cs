@@ -2,13 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 [Serializable]
 public class FruitTreeData
 {
-    public Text debugText;
-    public Transform branchPrefab;
+    public Vector3 myPos;
+    public Vector3 myScale;
+    public int branchType;
     public float breakTime;
     public float branchTime;
     public float trunkAxisRandom, branchAxisRandom;
@@ -17,9 +17,12 @@ public class FruitTreeData
     public Vector3 branchScaleVector;
     public float branchGrowthScale;
     public float globalGrowthRate;
-    private bool alive = true;
-    private bool growing = false;
-    private bool fruiting = false;
-    private bool hasTrunk = false;
-    public List<Transform> liveBranches, allBranches;
+    public int maxBranchLevel;
+    public bool alive = true;
+    public bool growing = false;
+    public bool fruiting = false;
+    public bool hasTrunk = false;
+    public List<Vector3> liveBranchPositions, allBranchPositions;
+    public List<Quaternion> liveBranchRotations, allBranchRotations;
+    public List<Vector3> allBranchScales;
 }

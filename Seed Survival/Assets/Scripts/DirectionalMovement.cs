@@ -9,7 +9,7 @@ public class DirectionalMovement : MonoBehaviour
 	public float thrustMax, thrustMin, accelPeriod;
 	private float thrust, thrustTimer;
 	public float speedModifier=1.2f;
-    private float energy = 0.5f;
+    public float energy = 0.5f;
     public float energyFadeRate;
 	public AudioManager mAudio;
     public Text energyText;

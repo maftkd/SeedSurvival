@@ -6,15 +6,19 @@ using UnityEngine.UI;
 public class ItemSelector : MonoBehaviour
 {
     public Transform appleIcon, seedIcon;
+    public Text appleCount, seedCount;
     public float transitionTime;
     public Text selectedState;
-    private bool seedSelected = true;
+    public bool seedSelected = true;
     public int numSeeds = 1;
     public int numFruit;
     // Start is called before the first frame update
     void Start()
     {
-        selectedState.text = "Selected: Seed";
+        if(numSeeds>0)
+            selectedState.text = "Selected: Seed";
+        seedCount.text = "x" + numSeeds;
+        appleCount.text = "x" + numFruit;
     }
 
     // Update is called once per frame
@@ -80,5 +84,6 @@ public class ItemSelector : MonoBehaviour
         {
             selectedState.text = "Selected: None";
         }
+        seedCount.text = "x"+numSeeds;
     }
 }

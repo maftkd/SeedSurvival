@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,8 @@ public class PauseMenu : MonoBehaviour
 	public CanvasGroup settingsScreen,gameOverScreen;
     public AudioManager mAudio;
 	private bool dead=false;
+    public Transform treePrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,11 +83,54 @@ public class PauseMenu : MonoBehaviour
 
     public void SaveGame()
     {
+        GameStateData gsd = new GameStateData();
+        
         //put all tree data into an array of FruitTreeData
+        GameObject [] trees = GameObject.FindGameObjectsWithTag("Tree");
+        FruitTreeData[] treeData = new FruitTreeData[trees.Length];
+        for(int i=0; i<treeData.Length; i++)
+        {
+            treeData[i] = trees[i].GetComponent<FruitTree>().Serialize();
+        }
         //create a new GameStateData
+        gsd.trees = treeData;
+        ItemSelector item = GameObject.FindGameObjectWithTag("Inventory").GetComponent<ItemSelector>();
         //fill in da blanks
+        gsd.seedCount = item.numSeeds;
+        gsd.fruitCount = item.numFruit;
+        gsd.playerEnergy = transform.GetComponent<DirectionalMovement>().energy;
+        gsd.playerPos = transform.position;
+        gsd.playerRot = Camera.main.transform.rotation;
+        DayCycle day = GameObject.FindGameObjectWithTag("Sun").GetComponent<DayCycle>();
+        gsd.seasonCode = day.seasonCode;
+        gsd.dayCode = day.dayCode;
         //serialize GameStateData to json
-        //write json string to file in persistantDataPath
+        string path = Application.persistentDataPath + "/saveData.json";
 
+        //write json string to file in persistantDataPath
+        File.WriteAllText(path, JsonUtility.ToJson(gsd));
+        Debug.Log("Save success");
+    }
+
+    public void LoadGame(GameStateData gsd)
+    {
+        
+        foreach(FruitTreeData tree in gsd.trees)
+        {
+            Transform newTree = Instantiate(treePrefab,tree.myPos,Quaternion.identity);
+            FruitTree ft = newTree.GetComponent<FruitTree>();
+            ft.Deserialize(tree);
+        }
+        
+        ItemSelector item = GameObject.FindGameObjectWithTag("Inventory").GetComponent<ItemSelector>();
+        item.numSeeds = gsd.seedCount;
+        item.numFruit = gsd.fruitCount;
+        transform.GetComponent<DirectionalMovement>().energy = gsd.playerEnergy;
+        transform.position = gsd.playerPos;
+        Camera.main.transform.rotation = gsd.playerRot;
+        DayCycle day = GameObject.FindGameObjectWithTag("Sun").GetComponent<DayCycle>();
+        day.seasonCode = gsd.seasonCode;
+        day.dayCode = gsd.dayCode;
+        
     }
 }

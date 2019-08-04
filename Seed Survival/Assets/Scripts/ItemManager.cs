@@ -17,10 +17,9 @@ public class ItemManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(0) && sItem.numSeeds>0)
+        if (Input.GetMouseButtonUp(0) && sItem.numSeeds>0 && sItem.seedSelected)
         {
-            PlantSeed();
-            
+            PlantSeed();            
         }
     }
 
@@ -33,7 +32,7 @@ public class ItemManager : MonoBehaviour
         Vector3 flatForward = Camera.main.transform.forward;
         flatForward.y = 0;
         Vector3 newPos = transform.position + flatForward.normalized;
-        newPos.y = 0;
+        newPos.y -= transform.localPosition.y; //this should be based on terrain height
         Instantiate(treePrefab, newPos, Quaternion.identity);
         //subtract number of seeds
         sItem.Planted();

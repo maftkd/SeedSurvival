@@ -66,7 +66,7 @@ public class FruitTree : MonoBehaviour
                 float growTime = branchTime * Mathf.Pow(growthRateDelay, branchLevel);
                 for (int i=0; i<oldBranchPositions.Count; i++)
                 {
-                    StartCoroutine(CreateBranch(growTime, oldBranchPositions[i], oldBranchRotations[i]));
+                    StartCoroutine(CreateBranch(growTime, oldBranchPositions[i], oldBranchRotations[i],true));
                 }
             }
             
@@ -89,19 +89,29 @@ public class FruitTree : MonoBehaviour
             yield return null;
         }
         debugText.text = "Broke surface";
-        StartCoroutine(CreateBranch(branchTime,transform.position, Quaternion.Euler(Random.Range(-trunkAxisRandom, trunkAxisRandom),0,Random.Range(-trunkAxisRandom, trunkAxisRandom))));        
+        StartCoroutine(CreateBranch(branchTime,transform.position, Quaternion.Euler(Random.Range(-trunkAxisRandom, trunkAxisRandom),0,Random.Range(-trunkAxisRandom, trunkAxisRandom)),false));        
     }
 
-    private IEnumerator CreateBranch(float growTime, Vector3 startPos, Quaternion startRot)
+    private IEnumerator CreateBranch(float growTime, Vector3 startPos, Quaternion startRot, bool fromLocal)
     {
         //instantiate branch prefab at startPos and startRotation
-        Transform branch = Instantiate(branchPrefab, startPos, startRot,transform);
+        Transform branch;
+        if (fromLocal)
+        {
+            branch = Instantiate(branchPrefab, transform);
+            branch.localPosition = startPos;
+            branch.localRotation = startRot;
+        }
+        else
+        {
+            branch = Instantiate(branchPrefab, startPos, startRot, transform);
+        }
         
         //track alive branches for saving and loading
         if (hasTrunk)
         {
-            liveBranchPositions.Add(branch.position);
-            liveBranchRotations.Add(branch.rotation);
+            liveBranchPositions.Add(branch.localPosition);
+            liveBranchRotations.Add(branch.localRotation);
         }
 
         int branchLevel;
@@ -133,11 +143,10 @@ public class FruitTree : MonoBehaviour
             debugText.text = "Branching";
             hasTrunk = true;
         }
-        else
-        {
-            liveBranchPositions.RemoveAt(liveBranchPositions.Count - 1);
-            liveBranchRotations.RemoveAt(liveBranchRotations.Count - 1);
-        }
+
+        liveBranchPositions.Clear();
+        liveBranchRotations.Clear();
+        yield return new WaitForSeconds(0.5f);
 
         
         if (branchLevel <= maxBranchLevel)
@@ -147,7 +156,7 @@ public class FruitTree : MonoBehaviour
                 Vector3 euler = startRot.eulerAngles;
                 Quaternion newRot = Quaternion.Euler(euler.x + Random.Range(-branchAxisRandom, branchAxisRandom), euler.y + Random.Range(-branchAxisRandom, branchAxisRandom),
                     euler.z + Random.Range(-branchAxisRandom, branchAxisRandom));
-                StartCoroutine(CreateBranch(growTime * growthRateDelay, branch.position + branch.up * branch.localScale.y * transform.localScale.y * 0.01f, newRot));
+                StartCoroutine(CreateBranch(growTime * growthRateDelay, branch.position + branch.up * branch.localScale.y * transform.localScale.y * 0.01f, newRot,false));
             }
         }
         //pop the branch from the live branches        

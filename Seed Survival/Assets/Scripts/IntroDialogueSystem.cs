@@ -71,6 +71,7 @@ public class IntroDialogueSystem : MonoBehaviour
         fader.alpha = 0;
 
         GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetComponent<ItemManager>().enabled = true;
+        GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetComponent<MeditationManager>().enabled = true;
         Destroy(transform.gameObject);
     }
 
@@ -152,6 +153,7 @@ public class IntroDialogueSystem : MonoBehaviour
         }
         fader.alpha = 0;
         GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetComponent<ItemManager>().enabled = true;
+        GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetComponent<MeditationManager>().enabled = true;
         Destroy(transform.gameObject);
 
     }
@@ -168,6 +170,7 @@ public class IntroDialogueSystem : MonoBehaviour
             bg.alpha = 0;
 
             GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetComponent<ItemManager>().enabled = true;
+            GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetComponent<MeditationManager>().enabled = true;
             Destroy(transform.gameObject);
         }
     }

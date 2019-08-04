@@ -2558,6 +2558,10 @@ PrefabInstance:
       propertyPath: meditationTimeScale
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 1562562539, guid: db999633c13ca2ecc90562c1695ae788, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db999633c13ca2ecc90562c1695ae788, type: 3}
 --- !u!1 &1562562535 stripped

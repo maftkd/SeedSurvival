@@ -71,7 +71,7 @@ public class DirectionalMovement : MonoBehaviour
 
     public IEnumerator Death()
     {
-        int hintNo = Random.Range(0, 4);
+        int hintNo = Random.Range(0, 5);
         string hintString = "Hint: ";
         switch (hintNo)
         {
@@ -86,6 +86,9 @@ public class DirectionalMovement : MonoBehaviour
                 break;
             case 3:
                 hintString += "Apples only yield during the summer and autumn seasons.";
+                break;
+            case 4:
+                hintString += "Try meditating under a tree to collect apples without having to move.";
                 break;
             default:
                 break;

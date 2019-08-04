@@ -26,6 +26,7 @@ public class FruitTree : MonoBehaviour
     public List<Quaternion> liveBranchRotations, allBranchRotations, oldBranchRotations;
     public List<Vector3> allBranchScales;
     public Transform fruitPrefab;
+    public Transform leafPrefab;
 
     private bool loaded = false;
 
@@ -62,7 +63,7 @@ public class FruitTree : MonoBehaviour
             {
                 for(int i=0; i<allBranchPositions.Count; i++)
                 {
-                    CreateBranchInstantly(allBranchPositions[i], allBranchRotations[i], allBranchScales[i]);
+                    CreateBranchInstantly(allBranchPositions[i], allBranchRotations[i], allBranchScales[i],i!=0);
                 }
                 int branchLevel = allBranchPositions.Count / branchRate + 1;
                 float growTime = branchTime * Mathf.Pow(growthRateDelay, branchLevel);
@@ -110,12 +111,8 @@ public class FruitTree : MonoBehaviour
                 yield return null;
             }
             Transform branch = transform.GetChild(Random.Range(1, transform.childCount));
-            Transform targetSlot = branch.GetChild(Random.Range(0, branch.childCount));
-            if (targetSlot.childCount == 0)
-            {
-                Transform newFruit = Instantiate(fruitPrefab);
-                newFruit.position = targetSlot.position;
-            }            
+            Transform newFruit = Instantiate(fruitPrefab,transform);
+            newFruit.position = branch.position + branch.up * Random.Range(0, 2f)+branch.right * Random.Range(-.1f, .1f) +branch.forward * Random.Range(-.1f, .1f);   
         }
     }
 
@@ -182,6 +179,10 @@ public class FruitTree : MonoBehaviour
             debugText.text = "Branching";
             hasTrunk = true;
         }
+        else
+        {
+            AddLeaves(branch);
+        }
 
         liveBranchPositions.Clear();
         liveBranchRotations.Clear();
@@ -202,14 +203,27 @@ public class FruitTree : MonoBehaviour
         allBranchPositions.Add(branch.localPosition);
         allBranchRotations.Add(branch.localRotation);
         allBranchScales.Add(branch.localScale);
+
+        
     }
 
-    private void CreateBranchInstantly(Vector3 pos, Quaternion rot, Vector3 localS)
+    private void AddLeaves(Transform branch)
+    {
+        foreach(Transform t in branch)
+        {
+            Transform leaf = Instantiate(leafPrefab,t.position,Random.rotation);
+            leaf.SetParent(transform);
+        }
+    }
+
+    private void CreateBranchInstantly(Vector3 pos, Quaternion rot, Vector3 localS, bool leaves)
     {
         Transform branch = Instantiate(branchPrefab, transform);
         branch.localPosition = pos;
         branch.localRotation = rot;
         branch.localScale = localS;
+        if(leaves)
+            AddLeaves(branch);
     }
 
     public FruitTreeData Serialize()

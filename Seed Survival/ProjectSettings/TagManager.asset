@@ -12,6 +12,7 @@ TagManager:
   - AppleParent
   - Terrain
   - Apple
+  - Leaf
   layers:
   - Default
   - TransparentFX

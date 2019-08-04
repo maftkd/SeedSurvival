@@ -54,9 +54,15 @@ public class DayCycle : MonoBehaviour
             {
                 dayCode = 0;
                 seasonCode++;
+
                 if (seasonCode > 3)
                 {
                     seasonCode = 0;
+                }
+                GameObject [] leaves = GameObject.FindGameObjectsWithTag("Leaf");
+                foreach(GameObject g in leaves)
+                {
+                    g.GetComponent<Leaf>().SetSeason();
                 }
             }
             seasonText.text = "Season/Day: " + seasonCode+"/"+dayCode;

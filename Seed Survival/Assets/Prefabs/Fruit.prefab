@@ -108,9 +108,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054464576005de64bad2b68527bcacf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growTime: 64
-  growRate: 0.005
-  decayTime: 128
+  growTime: 56
+  growRate: 0.0025
+  decayTime: 64
   decayColor: {r: 0.20754719, g: 0.123979606, b: 0.014684941, a: 1}
   collectTime: 1.5
 --- !u!54 &8609585232607359300

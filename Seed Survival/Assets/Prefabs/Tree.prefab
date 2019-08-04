@@ -61,7 +61,7 @@ MonoBehaviour:
   branchGrowthScale: 100
   globalGrowthRate: 0.001
   maxBranchLevel: 4
-  fruitPeriod: 16
+  fruitPeriod: 64
   liveBranchPositions: []
   allBranchPositions: []
   oldBranchPositions: []
@@ -70,6 +70,8 @@ MonoBehaviour:
   oldBranchRotations: []
   allBranchScales: []
   fruitPrefab: {fileID: 7100464240329904072, guid: ed168ef80111ff143b75f159d56e42c1,
+    type: 3}
+  leafPrefab: {fileID: 3463033415386439063, guid: ae2213840b8189241a097eb46d0f8166,
     type: 3}
 --- !u!1 &406966466875641547
 GameObject:

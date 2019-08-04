@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class IntroDialogueSystem : MonoBehaviour
 {
     public CanvasGroup fader, bg;
-    public Text mText;
+    public Text mText, skipText;
     public float fadeTime, readTime;
     // Start is called before the first frame update
     void Start()
@@ -51,6 +51,7 @@ public class IntroDialogueSystem : MonoBehaviour
             fader.alpha = 1;
         }
         mText.text = "";
+        skipText.text = "";
         timer = 0;
         bg.alpha = 0;
         while (timer < fadeTime)
@@ -70,6 +71,7 @@ public class IntroDialogueSystem : MonoBehaviour
         {
             StopAllCoroutines();
             mText.text = "";
+            skipText.text = "";
             fader.alpha = 0;
             bg.alpha = 0;
             Destroy(transform.gameObject);

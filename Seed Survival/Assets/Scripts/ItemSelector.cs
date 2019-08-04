@@ -86,4 +86,11 @@ public class ItemSelector : MonoBehaviour
         }
         seedCount.text = "x"+numSeeds;
     }
+
+    public void Collect()
+    {
+        Debug.Log("Received apple");
+        numFruit++;
+        appleCount.text = "x" + numFruit;
+    }
 }

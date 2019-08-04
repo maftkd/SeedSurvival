@@ -21,9 +21,11 @@ public class FruitTree : MonoBehaviour
     public float branchGrowthScale;
     public float globalGrowthRate;
     public int maxBranchLevel;
+    public float fruitPeriod;
     public List<Vector3> liveBranchPositions, allBranchPositions, oldBranchPositions;
     public List<Quaternion> liveBranchRotations, allBranchRotations, oldBranchRotations;
     public List<Vector3> allBranchScales;
+    public Transform fruitPrefab;
 
     private bool loaded = false;
 
@@ -77,7 +79,44 @@ public class FruitTree : MonoBehaviour
     void Update()
     {
         transform.localScale += Vector3.one * globalGrowthRate * Time.deltaTime * mMan.timeScale;
-        
+        if (!fruiting)
+        {
+            if(dayCycle.seasonCode==1 || dayCycle.seasonCode == 2)
+            {
+                if (hasTrunk)
+                {
+                    fruiting = true;
+                    StartCoroutine(YieldFruit());
+                }
+            }
+        }
+        else
+        {
+            if(dayCycle.seasonCode==3 || dayCycle.seasonCode == 0)
+            {
+                fruiting = false;
+            }
+        }
+    }
+
+    private IEnumerator YieldFruit()
+    {
+        while (fruiting)
+        {
+            float spawnTimer = 0;
+            while(spawnTimer < fruitPeriod)
+            {
+                spawnTimer += Time.deltaTime * mMan.timeScale;
+                yield return null;
+            }
+            Transform branch = transform.GetChild(Random.Range(1, transform.childCount));
+            Transform targetSlot = branch.GetChild(Random.Range(0, branch.childCount));
+            if (targetSlot.childCount == 0)
+            {
+                Transform newFruit = Instantiate(fruitPrefab);
+                newFruit.position = targetSlot.position;
+            }            
+        }
     }
 
     private IEnumerator BreakSurface()
@@ -198,7 +237,7 @@ public class FruitTree : MonoBehaviour
         mData.allBranchRotations = allBranchRotations;
         mData.allBranchScales = allBranchScales;
         mData.maxBranchLevel = maxBranchLevel;
-
+        mData.fruitPeriod = fruitPeriod;
         return mData;
     }
 
@@ -224,6 +263,7 @@ public class FruitTree : MonoBehaviour
         allBranchRotations = mData.allBranchRotations;
         allBranchScales = mData.allBranchScales;
         maxBranchLevel = mData.maxBranchLevel;
+        fruitPeriod = mData.fruitPeriod;
 
         loaded = true;
     }

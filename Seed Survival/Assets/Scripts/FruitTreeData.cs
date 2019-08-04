@@ -22,6 +22,7 @@ public class FruitTreeData
     public bool growing = false;
     public bool fruiting = false;
     public bool hasTrunk = false;
+    public float fruitPeriod;
     public List<Vector3> liveBranchPositions, allBranchPositions;
     public List<Quaternion> liveBranchRotations, allBranchRotations;
     public List<Vector3> allBranchScales;

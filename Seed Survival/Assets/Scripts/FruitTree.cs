@@ -9,6 +9,7 @@ public class FruitTree : MonoBehaviour
     public bool growing = false;
     public bool fruiting = false;
     public bool hasTrunk = false;
+    public bool hasLeaves = false;
     private enum LeafStates { NONE, GROWING, CHILLING, FALLING };
     public Text debugText;
     public Transform branchPrefab;
@@ -45,7 +46,7 @@ public class FruitTree : MonoBehaviour
             liveBranchRotations = new List<Quaternion>();
             allBranchRotations = new List<Quaternion>();
             allBranchScales = new List<Vector3>();
-            debugText.text = "Planted";
+            //debugText.text = "Planted";
             
             StartCoroutine(BreakSurface());
         }
@@ -82,9 +83,9 @@ public class FruitTree : MonoBehaviour
         transform.localScale += Vector3.one * globalGrowthRate * Time.deltaTime * mMan.timeScale;
         if (!fruiting)
         {
-            if(dayCycle.seasonCode==1 || dayCycle.seasonCode == 2)
+            if(dayCycle.seasonCode<2)
             {
-                if (hasTrunk)
+                if (hasTrunk && hasLeaves)
                 {
                     fruiting = true;
                     StartCoroutine(YieldFruit());
@@ -93,7 +94,7 @@ public class FruitTree : MonoBehaviour
         }
         else
         {
-            if(dayCycle.seasonCode==3 || dayCycle.seasonCode == 0)
+            if(dayCycle.seasonCode==2)
             {
                 fruiting = false;
             }
@@ -124,7 +125,7 @@ public class FruitTree : MonoBehaviour
             timer += Time.deltaTime * mMan.timeScale;
             yield return null;
         }
-        debugText.text = "Broke surface";
+        //debugText.text = "Broke surface";
         StartCoroutine(CreateBranch(branchTime,transform.position, Quaternion.Euler(Random.Range(-trunkAxisRandom, trunkAxisRandom),0,Random.Range(-trunkAxisRandom, trunkAxisRandom)),false));        
     }
 
@@ -176,12 +177,13 @@ public class FruitTree : MonoBehaviour
         }
         if (!hasTrunk)
         {
-            debugText.text = "Branching";
+            //debugText.text = "Branching";
             hasTrunk = true;
         }
         else
         {
             AddLeaves(branch);
+
         }
 
         liveBranchPositions.Clear();
@@ -214,6 +216,7 @@ public class FruitTree : MonoBehaviour
             Transform leaf = Instantiate(leafPrefab,t.position,Random.rotation);
             leaf.SetParent(transform);
         }
+        hasLeaves = true;
     }
 
     private void CreateBranchInstantly(Vector3 pos, Quaternion rot, Vector3 localS, bool leaves)
@@ -252,6 +255,7 @@ public class FruitTree : MonoBehaviour
         mData.allBranchScales = allBranchScales;
         mData.maxBranchLevel = maxBranchLevel;
         mData.fruitPeriod = fruitPeriod;
+        mData.hasLeaves = hasLeaves;
         return mData;
     }
 
@@ -278,6 +282,7 @@ public class FruitTree : MonoBehaviour
         allBranchScales = mData.allBranchScales;
         maxBranchLevel = mData.maxBranchLevel;
         fruitPeriod = mData.fruitPeriod;
+        hasLeaves = mData.hasLeaves;
 
         loaded = true;
     }

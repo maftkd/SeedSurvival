@@ -50,7 +50,7 @@ public class DayCycle : MonoBehaviour
             dayCode++;
             isSunny = true;
             stars.Stop();
-            if(dayCode > 6)
+            if(dayCode > 5)
             {
                 dayCode = 0;
                 seasonCode++;

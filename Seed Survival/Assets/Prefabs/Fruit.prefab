@@ -112,7 +112,7 @@ MonoBehaviour:
   growRate: 0.0025
   decayTime: 64
   decayColor: {r: 0.20754719, g: 0.123979606, b: 0.014684941, a: 1}
-  collectTime: 1.5
+  collectTime: 0.2
 --- !u!54 &8609585232607359300
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -140,7 +140,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &1888755290015169638
 AudioSource:

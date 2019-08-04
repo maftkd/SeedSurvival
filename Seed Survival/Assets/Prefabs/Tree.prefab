@@ -48,20 +48,21 @@ MonoBehaviour:
   growing: 0
   fruiting: 0
   hasTrunk: 0
+  hasLeaves: 0
   debugText: {fileID: 406966466875641545}
   branchPrefab: {fileID: 82767494424664041, guid: b65867a942a359b4c89dd0666f5ff6c3,
     type: 3}
   breakTime: 1
-  branchTime: 90
+  branchTime: 45
   trunkAxisRandom: 5
   branchAxisRandom: 55
   branchRate: 4
-  growthRateDelay: 2
+  growthRateDelay: 1.8
   branchScaleVector: {x: 0.1, y: 1, z: 0.1}
   branchGrowthScale: 100
   globalGrowthRate: 0.001
   maxBranchLevel: 4
-  fruitPeriod: 64
+  fruitPeriod: 16
   liveBranchPositions: []
   allBranchPositions: []
   oldBranchPositions: []
@@ -151,7 +152,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Lorem Ipsum
+  m_Text: 
 --- !u!1 &406966467153693917
 GameObject:
   m_ObjectHideFlags: 0

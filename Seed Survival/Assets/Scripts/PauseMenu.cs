@@ -17,7 +17,7 @@ public class PauseMenu : MonoBehaviour
     {
         
     }
-
+    private float prevTimeScale;
     // Update is called once per frame
     void Update()
     {
@@ -26,6 +26,8 @@ public class PauseMenu : MonoBehaviour
             {
                 transform.GetComponent<DirectionalMovement>().enabled = false;
                 transform.GetComponent<MouseLook>().enabled = false;
+                prevTimeScale = transform.GetComponent<MeditationManager>().timeScale;
+                transform.GetComponent<MeditationManager>().timeScale = 0;
                 mAudio.SetNone();
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
@@ -42,7 +44,8 @@ public class PauseMenu : MonoBehaviour
 		
 		transform.GetComponent<DirectionalMovement>().enabled=true;
 		transform.GetComponent<MouseLook>().enabled=true;
-		Cursor.visible=false;
+        transform.GetComponent<MeditationManager>().timeScale = prevTimeScale;
+        Cursor.visible=false;
 		Cursor.lockState= CursorLockMode.Locked;
 		settingsScreen.alpha=0;
 	}

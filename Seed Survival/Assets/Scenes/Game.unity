@@ -7581,21 +7581,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 417116630}
     - target: {fileID: 1562562538, guid: db999633c13ca2ecc90562c1695ae788, type: 3}
-      propertyPath: energyFadeRate
-      value: 0.01
-      objectReference: {fileID: 0}
+      propertyPath: fader
+      value: 
+      objectReference: {fileID: 230210284}
     - target: {fileID: 1562562538, guid: db999633c13ca2ecc90562c1695ae788, type: 3}
       propertyPath: hintText
       value: 
       objectReference: {fileID: 57117592}
-    - target: {fileID: 1562562538, guid: db999633c13ca2ecc90562c1695ae788, type: 3}
-      propertyPath: fader
+    - target: {fileID: 7157387235782841432, guid: db999633c13ca2ecc90562c1695ae788,
+        type: 3}
+      propertyPath: mAudio
       value: 
-      objectReference: {fileID: 230210284}
+      objectReference: {fileID: 767264494}
     - target: {fileID: 7157387235782841432, guid: db999633c13ca2ecc90562c1695ae788,
         type: 3}
       propertyPath: meditationTimeScale
-      value: 35
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3270021289438219016, guid: db999633c13ca2ecc90562c1695ae788,
         type: 3}

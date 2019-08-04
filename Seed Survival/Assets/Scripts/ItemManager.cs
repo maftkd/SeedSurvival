@@ -9,17 +9,19 @@ public class ItemManager : MonoBehaviour
     private AudioSource sAudio;
     public Transform treePrefab;
     private DirectionalMovement mDir;
+    private MeditationManager mMan;
     // Start is called before the first frame update
     void Start()
     {
         sAudio = transform.GetComponent<AudioSource>();
         mDir = transform.GetComponent<DirectionalMovement>();
+        mMan = transform.GetComponent<MeditationManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && mMan.timeScale > 0)
         {
             if (sItem.numSeeds > 0 && sItem.seedSelected)
                 PlantSeed();

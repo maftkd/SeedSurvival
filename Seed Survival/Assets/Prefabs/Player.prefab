@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 1562562536}
   - component: {fileID: 1562562537}
   - component: {fileID: 1562562538}
-  - component: {fileID: 1562562539}
+  - component: {fileID: 7157387235782841432}
+  - component: {fileID: 3270021289438219016}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -201,6 +202,8 @@ MonoBehaviour:
   settingsScreen: {fileID: 0}
   gameOverScreen: {fileID: 0}
   mAudio: {fileID: 0}
+  treePrefab: {fileID: 406966465260655667, guid: d84fe05b9f63280468e2972231cf740c,
+    type: 3}
 --- !u!114 &1562562537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,20 +241,42 @@ MonoBehaviour:
   thrustMin: 1
   accelPeriod: 1
   speedModifier: 1
+  energy: 0.5
+  energyFadeRate: 0.02
   mAudio: {fileID: 0}
---- !u!114 &1562562539
+  energyText: {fileID: 0}
+  fruitGains: 0.05
+--- !u!114 &7157387235782841432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8588042577324779891}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79023ba8ca268854f963fc38c16a4498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timeScale: 1
+  meditationTimeScale: 50
+--- !u!114 &3270021289438219016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588042577324779891}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee6bb2170233ef40bfd29bc916209f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sItem: {fileID: 0}
+  seedPlant: {fileID: 8300000, guid: abd30e8479115bc4b804a3d4673c2041, type: 3}
+  fruitEat: {fileID: 8300000, guid: 63c7616429a0be0468831c89268773f9, type: 3}
+  treePrefab: {fileID: 406966465260655667, guid: d84fe05b9f63280468e2972231cf740c,
+    type: 3}
 --- !u!1 &8588042577748313136
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,7 +459,8 @@ GameObject:
   - component: {fileID: 8588042579248713378}
   - component: {fileID: 8588042579248713373}
   - component: {fileID: 8588042579248713372}
-  m_Layer: 11
+  - component: {fileID: 1562562539}
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -487,6 +513,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1562562539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588042579248713375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b103489beebfd4c9e7427cb5b915a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &653937381336744532
 PrefabInstance:
   m_ObjectHideFlags: 0

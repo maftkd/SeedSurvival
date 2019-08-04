@@ -80,11 +80,27 @@ public class ItemSelector : MonoBehaviour
     public void Planted()
     {
         numSeeds--;
-        if (numSeeds < 1)
+        if (numSeeds < 1 && seedSelected)
         {
             selectedState.text = "Selected: None";
         }
         seedCount.text = "x"+numSeeds;
+    }
+
+    public void Eaten()
+    {
+        numFruit--;
+        numSeeds++;
+        if (numFruit < 1 && !seedSelected)
+        {
+            selectedState.text = "Selected: None";
+        }
+        else if (seedSelected)
+        {
+            selectedState.text = "Selected: Seed";
+        }
+        seedCount.text = "x" + numSeeds;
+        appleCount.text = "x" + numFruit;
     }
 
     public void Collect()

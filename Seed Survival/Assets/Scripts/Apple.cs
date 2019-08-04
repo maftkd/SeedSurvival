@@ -67,36 +67,44 @@ public class Apple : MonoBehaviour
         Destroy(transform.gameObject);
     }
 
-    private IEnumerator Collect()
+    public IEnumerator Collect()
     {
-        collected = true;
-        float timer = 0;
+        if (!collected) { 
+            collected = true;
+            float timer = 0;
+            transform.GetComponent<AudioSource>().Play();
 
-        transform.GetComponent<Rigidbody>().useGravity = false;
-        while (timer < collectTime)
+            transform.GetComponent<Rigidbody>().useGravity = false;
+            while (timer < collectTime)
+            {
+                timer += Time.deltaTime;
+                transform.position = Vector3.Lerp(transform.position, Camera.main.transform.position, timer / collectTime);
+                yield return null;
+            }
+            GameObject.FindGameObjectWithTag("Inventory").GetComponent<ItemSelector>().Collect();
+            Destroy(transform.gameObject);
+        }
+        else
         {
-            timer += Time.deltaTime;
-            transform.position = Vector3.Lerp(transform.position, Camera.main.transform.position, timer / collectTime);
             yield return null;
         }
-        GameObject.FindGameObjectWithTag("Inventory").GetComponent<ItemSelector>().Collect();
-        Destroy(transform.gameObject);
     }
 
     void OnCollisionEnter(Collision other)
     {
-        Debug.Log("Hit ground");
-        decay = true;
+        if(other.transform.tag=="Terrain")
+            decay = true;
     }
 
+    /*
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && !collected)
+        if (other.tag == "Player" && !collected && decay)
             StartCoroutine(Collect());
     }
     void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player" && !collected)
+        if (other.tag == "Player" && !collected && decay)
             StartCoroutine(Collect());
-    }
+    }*/
 }
